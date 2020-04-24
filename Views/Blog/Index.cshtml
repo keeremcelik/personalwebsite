@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Blog Page";
+    Layout = "_BlogLayout";
+}
+
+
+
+@foreach (var item in ViewBag.post)
+{
+    <div class="card mb-4">
+        @foreach (var img in ViewBag.CoverImage)
+        {
+            @if (img.PostId == item.PostId)
+            {
+                <img class="card-img-top image-cover" src="~/img/posts/@item.PostId/@img.Name" alt="@item.Title">
+            }
+        }
+
+
+        <div class="card-body">
+            <h2 class="card-title">@item.Title</h2>
+            <p class="card-text">@item.Abstract</p>
+            <a asp-controller="Blog" asp-action="DetailPost" asp-route-id="@item.PostId" class="btn btn-primary">Read More →</a>
+        </div>
+        <div class="card-footer text-muted">
+            Posted on @item.Date.ToString("dddd, dd MMMM yyyy")
+        </div>
+    </div>
+}
+
+

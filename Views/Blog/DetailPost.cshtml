@@ -1,0 +1,65 @@
+﻿@model Post
+@{
+    ViewData["Title"] = "Blog Post detail";
+    Layout = "_BlogLayout";
+}
+
+
+<h1 class="mt-4">@Model.Title</h1>
+<p class="lead">
+    by
+    <a href="#">Kerem ÇELİK</a>
+</p>
+<hr />
+<p>Posted on <strong>@Model.Date.ToString("dddd, dd MMMM yyyy") </strong> </p>
+<hr />
+<div class="text-center">
+    <img class="card-img-top image-cover image-cover" src="~/img/posts/@Model.PostId/@ViewBag.CoverImage.Name" alt="@Model.Title">
+</div>
+<hr />
+<p class="lead">@Model.Abstract</p>
+@Html.Raw(Model.Content)
+<hr />
+<div class="row">
+    @foreach (var item in ViewBag.image)
+    {
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <img onclick="openImg(this)" id="myImg" src="~/img/posts/@item.PostId/@item.Name" class="img-thumbnail image-cover" style="max-height:200px; min-height:200px" width="200px" alt="@item.Name" />
+            </div>
+
+        </div>
+    }
+</div>
+<hr />
+<div class="card my-4">
+    <h5 class="card-header">Leave a Comment:</h5>
+    <div class="card-body">
+        <form asp-controller="Blog" asp-action="Send" method="post">
+            <div class="form-group">
+                <input name="Postid" id="Postid" hidden value="@Model.PostId" />
+                <label for="Name">Name</label>
+                <input name="Name" id="Name" class="form-control" />
+
+                <label for="Message">Message</label>
+                <textarea name="Message" id="Message" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+@foreach (var item in ViewBag.comments)
+{
+    <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+            <h5 class="mt-0">@item.Name</h5>
+           @item.Content
+        </div>
+    </div>
+
+}
+<div id="imgModal" class="modal " onclick="this.style.display='none'">
+    <span class="close">&times;</span>
+    <img id="imgModalImg">
+</div>

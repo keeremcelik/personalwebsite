@@ -1,0 +1,16 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_PanelLayout";
+}
+
+<h2>
+    <b>@Model.Name</b> isimli projeyi silmek istiyormusunuz ?
+
+</h2>
+<form asp-controller="Project" asp-action="Delete" method="POST">
+    <input type="hidden" asp-for="ProjectId">
+    <button type="submit" class="btn btn-primary">Delete</button>
+</form>
+
+

@@ -1,0 +1,59 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_BlogLayout";
+}
+<section id="s1">
+    <div class="container">
+        <div class="row">
+            <div class="contact-title">
+                <h1>İletişim</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="contact-detail">
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="contact-inf">
+                            <div class="pull-left col-md-6 col-sm-12 col-xs-12">
+                                <h5 class=""><i class="fas fa-user-tie"></i><strong> @ViewBag.personal.Name</strong></h5>
+                                <p class="phone"><i class="fas fa-phone"></i> <strong>Telefon : </strong> @ViewBag.personal.Phone</p>
+                                <p class="email"><i class="far fa-envelope-open"></i> <strong>E mail : </strong>@ViewBag.personal.Email</p>
+                                <p class="location"><i class="far fa-compass"></i> <strong>Konum : </strong>Kocaeli / Türkiye</p>
+
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="ticket-mail">
+                                    <div class="ticket">
+                                        <h5 class=""><i class="fas fa-envelope"></i><strong> Mail Gönder</strong></h5>
+                                        <form method="post" asp-controller="Contact" asp-action="SendMessage" id="ticketForm">
+                                            <div class="form-group">
+                                                <label asp-for="Name">Name</label>
+                                                <input asp-for="Name" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Subject">Subject</label>
+                                                <input asp-for="Subject" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Content">Content</label>
+                                                <textarea asp-for="Content" class="form-control"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Create</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="contact-map">
+                            @ViewBag.site.GoogleMap
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>	

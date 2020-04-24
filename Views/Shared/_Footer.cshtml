@@ -1,0 +1,44 @@
+﻿<footer class="page-footer font-small teal">
+    <!-- Footer Text -->
+    <div class="container">
+        <!-- Grid row -->
+        <div class="ft-left">
+            <div class="social-media">
+                <p> <strong class="footer-title ">Sosyal Medya</strong></p>
+                @foreach (var item in ViewBag.social)
+                {
+                    <a class="text-primary" href="@item.Link" target="_blank">@Html.Raw(item.Icon)</a>
+                }
+
+                <br>
+                <br>
+            </div>
+            <div class="inf-box">
+                <p> <strong class="footer-title">İletişim Bilgileri</strong></p>
+
+                <p class="fs15">@ViewBag.personal.Degree & KRX </p>
+                <p class="fs15">@ViewBag.personal.Email</p>
+                <p class="fs15">@ViewBag.personal.Phone</p>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="ft-right">
+            <div class="description">
+                <p class="fs15"> <strong class="footer-title">Özet</strong></p>
+                <p class="fs15">Adım Kerem ÇELİK, Bilgisayar Eğitmeni ve Bilgisayar Yazılımcısıyım. 8 yıldır C# dilinde çeşitli yazılımlar geliştirdim. 2019 yılından itibaren web yazılımları geliştirmeye başladım.</p>
+
+            </div>
+            <div class="copyright">
+                <p> <strong class="footer-title">Copyright</strong></p>
+                <p class="fs15">© 2020 @ViewBag.personal.Name & <a href="@ViewBag.site.SiteName">@ViewBag.site.SiteName</a></p>
+                <p class="fs15"><strong class="footer-title fs15">Created By</strong> @ViewBag.personal.Name</p>
+            </div>
+        </div>
+        <!-- Grid row -->
+
+    </div>
+</footer>

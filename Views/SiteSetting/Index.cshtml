@@ -1,0 +1,49 @@
+﻿@model SiteSetting
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_PanelLayout";
+}
+
+
+<div class="row">
+    <div class="col-md-12 ml-3">
+        <form asp-action="Index" asp-controller="SiteSetting" method="POST">
+            <input type="hidden" asp-for="SSId">
+            <div class="form-group">
+                <label asp-for="SiteName">Site Name</label>
+                <input asp-for="SiteName" class="form-control" placeholder="Please enter site name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Please enter site title" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Keywords">Keywords</label>
+                <input asp-for="Keywords" class="form-control" placeholder="Please enter site keywords" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GoogleCode">Google Code</label>
+                <textarea asp-for="GoogleCode" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="GoogleID">GoogleID</label>
+                <input asp-for="Description" class="form-control" placeholder="Please enter the google ID" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GoogleMap">Google Map</label>
+                <textarea asp-for="GoogleMap" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" asp-for="Status" class="custom-control-input">
+                    <label class="custom-control-label" asp-for="Status">Status</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>

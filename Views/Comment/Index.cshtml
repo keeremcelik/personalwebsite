@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Comment>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_PanelLayout";
+}
+
+<div class="col ml-3">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Post</th>
+                <th>Date</th>
+                <th></th>
+            </tr>      
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Status == false)
+                        {
+                            <span class="badge badge-danger">Passive</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Active</span>
+                        }
+                    </td>
+                    <td>@item.Name</td>
+                    <td>
+                       @item.PostId
+                    </td>
+                    <td>@item.Date</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" asp-route-id="@item.CommentId" asp-action="Delete" asp-controller="Comment">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

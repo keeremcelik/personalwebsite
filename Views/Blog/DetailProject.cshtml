@@ -1,0 +1,37 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "Blog Project detail";
+    Layout = "_BlogLayout";
+}
+
+
+<h1 class="mt-4">@Model.Name</h1>
+<p class="lead">
+    by
+    <a href="#">Kerem ÇELİK</a>
+</p>
+<hr />
+<p>Posted on <strong>@Model.Date.ToString("dddd, dd MMMM yyyy") </strong> </p>
+<hr />
+<img class="card-img-top image-cover image-cover" src="~/img/projects/@Model.ProjectId/@ViewBag.CoverImage.Name" alt="@Model.Name">
+<hr />
+
+@Html.Raw(Model.Content)
+
+<hr />
+<div class="row">
+    @foreach (var item in ViewBag.image)
+    {
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <img onclick="openImg(this)" id="myImg" src="~/img/projects/@Model.ProjectId/@item.Name" class="img-thumbnail image-cover" style="max-height:200px; min-height:200px" width="200px" alt="@Model.Name" />
+
+            </div>
+
+        </div>
+    }
+</div>
+<div id="imgModal" class="modal " onclick="this.style.display='none'">
+    <span class="close">&times;</span>
+    <img  id="imgModalImg">
+</div>

@@ -1,0 +1,14 @@
+﻿@model SocialSetting
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_PanelLayout";
+}
+<h2>
+    <b>@Model.Name</b> isimli Sosyal medyayı silmek istiyormusunuz ?
+
+</h2>
+<form asp-controller="SiteSetting" asp-action="Delete" method="POST">
+    <input type="hidden" asp-for="SocialId">
+    <button type="submit" class="btn btn-primary">Delete</button>
+</form>
+

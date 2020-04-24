@@ -1,0 +1,32 @@
+﻿@model SocialSetting
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_PanelLayout";
+}
+
+<div class="row">
+    <div class="col-md-12 ml-3">
+        <form asp-action="Edit" asp-controller="SocialSetting" method="POST">
+            <input type="hidden" asp-for="SocialId">
+            <div class="form-group">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Please enter social name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Link">Link</label>
+                <input asp-for="Link" class="form-control" placeholder="Please enter link" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon">Icon</label>
+                <input asp-for="Icon" class="form-control" placeholder="Please enter the social icon" />
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" asp-for="Status" class="custom-control-input">
+                    <label class="custom-control-label" asp-for="Status">Status</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>

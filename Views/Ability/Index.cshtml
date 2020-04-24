@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Ability>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_PanelLayout";
+}
+
+<div class="col ml-3">
+    <div class="text-right mb-3">
+        <a asp-action="Create" asp-controller="Ability"  class="btn btn-sm btn-primary">Create</a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Ability</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Status == false)
+                        {
+                            <span class="badge badge-danger">Passive</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Active</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="clearfix">
+                            <strong class="">@item.Name</strong>
+                            <small class="">@item.Rate %</small>
+                        </div>
+                        <div class="progress xs">
+                            <div class="progress-bar " style="width:@item.Rate%"> </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" asp-route-id="@item.AbilityId" asp-action="Edit" asp-controller="Ability">
+                            Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm" asp-route-id="@item.AbilityId" asp-action="Delete" asp-controller="Ability">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

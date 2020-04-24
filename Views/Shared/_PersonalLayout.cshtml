@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58156243-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-58156243-2');
+    </script>
+
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css" integrity="sha256-a2tobsqlbgLsWs7ZVUGgP5IvWZsx8bTNQpzsqCSm5mk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/footer.css" />
+    <link rel="stylesheet" href="~/css/personal.css" />
+</head>
+<body>
+    <header>
+        <nav class="nav nav-open navbar-k" id="nav">
+            <div class="navTop" id="navTopId">
+                <div class="nav-left">
+                    <a href="#" class="logo">KEREM ÇELİK</a>
+                </div>
+                <div id="nav-right" class="nav-right">
+                    <a asp-action="Index" asp-controller="Home" class=" active">Ana Sayfa</a>
+                    <a asp-action="Index" asp-controller="Blog" class="" target="_blank">Blog</a>
+                    <a href="javascript:void(0);" class="nav-icon" id="nav-icon" onclick="menuFunc()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+
+        @RenderBody()
+    </main>
+    <partial name="_Footer" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+    <script src="~/js/personal.js"></script>
+</body>
+</html>

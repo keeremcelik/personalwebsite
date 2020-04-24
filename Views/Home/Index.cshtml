@@ -1,0 +1,228 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_PersonalLayout";
+}
+<section id="s1">
+    <div id="slider">
+        <div class="dfn-center">
+            <div class="container">
+                <div class="row">
+                    <div class=" wow bounceInLeft">
+                        <h1 class="header-title">@ViewBag.personal.Name<strong class="yesil"></strong></h1>
+                        <div class="def01"><strong class="xy0">Software</strong><strong class="xy1">DEVELOPER</strong></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="minititle wow bounceInLeft">Bilgisayar Eğitmeni ve Bilgisayar Yazılımcısı</span>
+                </div>
+                <div class="row">
+                    <p class="header-subtitle">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="s2">
+    <div class="container">
+        <div class="row flex">
+            <div class="stitle wow flipInX slow">
+                <h3>HAKKIMDA</h3>
+            </div>
+            <div class="vline"></div>
+        </div>
+
+        <div class="row  wow fadeIn slow" style="margin-top: 2vw;">
+            <div class="col-md-6">
+                <div class="info center">
+                    <img id="infoImg" src="~/img/@ViewBag.personal.Image" alt="RESİM" />
+
+                </div>
+
+                <div class="info center">
+
+                    <p class="infoName" @ViewBag.personal.Name</p>
+                    <p class="infoDef">Freelancer Full-stack yazılım geliştirmecisiyim.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="ability">
+                    @foreach (var item in ViewBag.ability)
+                    {
+                        <div class="p-bar wow fadeInLeft slow">
+                            <label class="txt">@item.Name</label>
+                            <div class="progress ">
+                                <div class="progress-bar" role="progressbar" style="width: @item.Rate%" aria-valuenow="@item.Name" aria-valuemin="0" aria-valuemax="100">
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="s3" class="bg-light">
+    <div class="container ">
+
+        <div class="row flex">
+            <div class="stitle wow flipInX slow">
+                <h3>PROJELERİM</h3>
+            </div>
+            <div class="vline"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="projects">
+                    <div class="row flex">
+                        <nav class="nav-project">
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-web-tab" data-toggle="tab" href="#nav-web" role="tab" aria-controls="nav-web" aria-selected="true">Web</a>
+                                <a class="nav-item nav-link" id="nav-desktop-tab" data-toggle="tab" href="#nav-desktop" role="tab" aria-controls="nav-desktop" aria-selected="false">Masaüstü</a>
+                                <a class="nav-item nav-link" id="nav-mobile-tab" data-toggle="tab" href="#nav-mobile" role="tab" aria-controls="nav-mobile" aria-selected="false">Mobil</a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="row center">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-web" role="tabpanel" aria-labelledby="nav-web-tab">
+                                <div class="project-group">
+                                    @foreach (var item in ViewBag.project)
+                                    {
+                                        @if (item.Type == 1)
+                                        {
+                                            <div onmouseover="testProje(@item.ProjectId,event)" onmouseleave="testProje(@item.ProjectId,event)" id="@("cp"+item.ProjectId)" class="card-project col-lg-3 col-md-4 col-sm-6 col-xs-1 wow slideInUp">
+                                                <div id="@("ph"+item.ProjectId)" class="project-head">
+                                                    <h5>@item.Name</h5>
+                                                    <span>@item.infrastructure</span>
+                                                </div>
+                                                <div id="@("pb"+item.ProjectId)" class="project-body">
+                                                    @foreach (var img in ViewBag.coverImage)
+                                                    {
+                                                        @if (img.PostId == item.ProjectId)
+                                                        {
+                                                            <img class="project-img" src="~/img/projects/@item.ProjectId/@img.Name" alt="@img.Name" style="min-height: 250px;">
+                                                        }
+                                                    }
+
+                                                </div>
+                                                <div id="@("pf"+item.ProjectId)" class="project-footer">
+                                                    <a asp-controller="Blog" asp-action="DetailProject" asp-route-id="@item.ProjectId" class="btn-p-detail">Detay</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" id="nav-desktop" role="tabpanel" aria-labelledby="nav-desktop-tab">
+                                <div class="project-group">
+                                    @foreach (var item in ViewBag.project)
+                                    {
+                                        @if (item.Type == 2)
+                                        {
+                                            <div onmouseover="testProje(@item.ProjectId,event)" onmouseleave="testProje(@item.ProjectId,event)" id="@("cp"+item.ProjectId)" class="card-project col-lg-3 col-md-4 col-sm-6 col-xs-1 wow slideInUp">
+                                                <div id="@("ph"+item.ProjectId)" class="project-head">
+                                                    <h5>@item.Name</h5>
+                                                    <span>@item.infrastructure</span>
+                                                </div>
+                                                <div id="@("pb"+item.ProjectId)" class="project-body">
+                                                    @foreach (var img in ViewBag.coverImage)
+                                                    {
+                                                        @if (img.PostId == item.ProjectId)
+                                                        {
+                                                            <img class="project-img" src="~/img/projects/@item.ProjectId/@img.Name" alt="@img.Name" style="min-height: 250px;">
+                                                        }
+                                                    }
+                                                </div>
+                                                <div id="@("pf"+item.ProjectId)" class="project-footer">
+                                                    <a asp-controller="Blog" asp-action="DetailProject" asp-route-id="@item.ProjectId" class="btn-p-detail">Detay</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" id="nav-mobile" role="tabpanel" aria-labelledby="nav-mobile-tab">
+                                <div class="project-group">
+                                    @foreach (var item in ViewBag.project)
+                                    {
+                                        @if (item.Type == 3)
+                                        {
+                                            <div onmouseover="testProje(@item.ProjectId,event)" onmouseleave="testProje(@item.ProjectId,event)" id="@("cp"+item.ProjectId)" class="card-project col-lg-3 col-md-4 col-sm-6 col-xs-1 wow slideInUp">
+                                                <div id="@("ph"+item.ProjectId)" class="project-head">
+                                                    <h5>@item.Name</h5>
+                                                    <span>@item.infrastructure</span>
+                                                </div>
+                                                <div id="@("pb"+item.ProjectId)" class="project-body">
+                                                    @foreach (var img in ViewBag.coverImage)
+                                                    {
+                                                        @if (img.PostId == item.ProjectId&& img.Type == 2)
+                                                        {
+                                                            <img class="project-img" src="~/img/projects/@item.ProjectId/@img.Name" alt="@img.Name" style="min-height: 250px;">
+                                                        }
+                                                    }
+                                                </div>
+                                                <div id="@("pf"+item.ProjectId)" class="project-footer">
+                                                    <a asp-controller="Blog" asp-action="DetailProject" asp-route-id="@item.ProjectId" class="btn-p-detail">Detay</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="s4">
+    <div class="container ">
+
+        <div class="row flex">
+            <div class="stitle wow flipInX slow">
+                <h3>BLOG</h3>
+            </div>
+            <div class="vline"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="blogs">
+                    <div class="card-group">
+                        @foreach (var item in ViewBag.post)
+                        {
+                            <div class="card wow zoomIn">
+                                <a asp-controller="Blog" asp-action="DetailPost" asp-route-id="@item.PostId" style="">
+                                    @foreach (var img in ViewBag.coverImage)
+                                    {
+                                        @if (img.PostId == item.PostId && img.Type == 1)
+                                        {
+                                            <img class="project-img" src="~/img/posts/@item.PostId/@img.Name" alt="@img.Name" style="min-height: 250px;">
+                                        }
+                                    }
+
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Title</h5>
+                                    <p class="card-text text-row-5 ">@item.Abstract</p>
+                                    <p class="card-text"><small class="text-muted">@item.Date</small></p>
+
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

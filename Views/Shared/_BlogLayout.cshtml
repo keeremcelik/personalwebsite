@@ -1,0 +1,123 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="~/css/contact.css" />
+    <link rel="stylesheet" href="~/css/footer.css" />
+    <link rel="stylesheet" href="~/css/blog.css" />
+
+    <title>@ViewData["Title"]</title>
+</head>
+<body id="body">
+    <div class="header">
+
+
+        <header>
+            <div class="dd31ss"></div>
+            <nav class="nav nav-open navbar-k" id="navbar-k">
+                <div class="container">
+                    <div class="navTop">
+                        <div class="nav-left">
+                            <a asp-controller="Blog" asp-action="Index" class="logo">KEREM ÇELİK</a>
+                        </div>
+                        <div id="nav-right" class="nav-right">
+
+                            <a href="javascript:;" class="nav-icon" id="nav-icon" onclick="menuFunc()">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <div id="menu" class="menu">
+        <div class="container d-flex">
+            <div class="category">
+                <ul class="mul">
+                    <li class="mli"><a asp-controller="Blog" asp-action="Index" class="">Ana Sayfa</a></li>
+                    <li class="mli">
+                        <a class="collapsed" href="#ctg" data-toggle="collapse">
+                            Kategoriler
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="ctgul collapse" id="ctg">
+                            @foreach (var item in ViewBag.category)
+                            {
+                                <li class="mli" data-parent="#ctg"><a asp-controller="Blog" asp-action="Categories" asp-route-id="@item.CategoryId">@item.Name</a></li>
+                            }
+                        </ul>
+                    </li>
+
+
+
+                    <li class="mli"><a asp-controller="Blog" asp-action="Projects" class="">Projects</a></li>
+                    <li class="mli"><a asp-controller="Contact" asp-action="Index" class="">Contact</a>   </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <main id="main" role="main">
+        <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        @RenderBody()
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <h5 class="card-header">Search</h5>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card my-4">
+                            <h5 class="card-header">Categories</h5>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <ul class="list-unstyled mb-0">
+                                            @foreach (var item in ViewBag.category)
+                                            {
+                                                <li>
+                                                    <a asp-controller="Blog" asp-action="Categories" asp-route-id="@item.CategoryId">@item.Name</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <partial name="_Footer" />
+    </main>
+    <!-- Optional JavaScript -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+    <script src="~/js/blog.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_PanelLayout";
+}
+
+<div class="row">
+    <div class="col-md-12 ml-3">
+        <form asp-action="Create" asp-controller="Category" method="POST">
+            <div class="form-group">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Please enter category name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Keywords">Keywords</label>
+                <input asp-for="Keywords" class="form-control" placeholder="Please enter category keywords" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Descriptions">Descriptions</label>
+                <textarea asp-for="Descriptions" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" asp-for="Status" class="custom-control-input">
+                    <label class="custom-control-label" asp-for="Status">Status</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>

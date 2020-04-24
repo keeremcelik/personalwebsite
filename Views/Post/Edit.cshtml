@@ -1,0 +1,101 @@
+﻿@model Post
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_PanelLayout";
+}
+@section scripts{
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script>
+	CKEDITOR.replace("Content");
+    </script>
+    <script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileLabel = $(this).next('.custom-file-label');
+            var files = $(this)[0].files;
+            if (files.length > 1) {
+                fileLabel.html(files.length + ' files selected');
+            }
+            else if (files.length == 1) {
+                fileLabel.html(files[0].name);
+            }
+        });
+    });
+    </script>
+}
+<div class="row">
+    <div class="col-md-12 ml-3">
+        <form asp-action="Edit" asp-controller="Post" method="POST" enctype="multipart/form-data">
+            <input type="hidden" asp-for="PostId">
+            <input type="hidden" asp-for="Image">
+            <input type="hidden" asp-for="CoverImage">
+            <div class="form-group">
+                <label asp-for="CatId">Category</label>
+                <select asp-for="CatId" asp-items="ViewBag.Category" class="form-control">
+                    <option disabled selected value="">Select Category....</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title">Abstract</label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Abstract">Abstract</label>
+                <textarea asp-for="Abstract" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content">Content</label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Keywords">Keywords</label>
+                <input asp-for="Keywords" class="form-control" placeholder="Please enter keywords" />
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    @foreach (var item in ViewBag.images)
+                    {
+                        <div class="col-md-3 ">
+                            <div class="card">
+                                <img src="~/img/posts/@item.PostId/@item.Name" class="img-thumbnail" style="max-height:200px; min-height:200px" width="200px" alt="@item.Name" />
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        @if (item.IsCoverImage == true)
+                                        {
+                                            <span class="btn btn-sm btn-warning w-100">Cover Image</span>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Image" asp-action="CoverImage" asp-route-id="@item.ImageId" class="btn btn-sm btn-success w-100">Do Cover Image</a>
+                                            <a asp-controller="Image" asp-action="DeleteImg" asp-route-id="@item.ImageId" class="btn btn-sm btn-danger w-100">Delete</a>
+                                        }
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-md-12 m-auto">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="file" multiple id="file">
+                            <label class="custom-file-label" for="file">Choose file...</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" asp-for="Status" class="custom-control-input">
+                    <label class="custom-control-label" asp-for="Status">Status</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
